@@ -1,0 +1,27 @@
+use fifa19;
+select * from players limit 10;
+select count(*) from players;
+select count(distinct nationality) as no_of_nationality from players;
+select sum(wage) as total, avg(wage) as average, stddev(wage) as stddev from players;
+select count(*) as freq, nationality from players group by nationality;
+select count(nationality) from players group by nationality;
+select count(*) as clubs, club from players group by club;
+select count(*) as freq, nationality from players group by nationality order by freq desc limit 3;
+select max(wage) as Highest_wage, name from players group by name order by Highest_wage desc limit 5;
+select name from players where wage = (select max(wage) from players);
+select name, wage from players;
+select name, overallrating from players where overallrating = (select max(overallrating) from players) limit 5;
+select sum(overallrating) as total_rating, club from players group by club;
+# Advanced Queries
+select count(*) as freq, preferredfoot from players group by 2 order by 1 desc;
+select sum(wage) as total_wage, jersynumber from players group by 2 order by 1 desc limit 1;
+select name from players where jersynumber = 10;
+select name, wage, overallrating from players where jersynumber = 10 order by wage, jersynumber;
+select count(*) from players where joined >= "2018-05-20" and joined <= "2019-04-10";
+select count(*) as freq, name, club, date(joined) from players group by date(joined);
+select count(*) as freq, date(joined) from players group by 2; 
+SELECT COUNT(*) AS freq, date(joined), MAX(name) AS name, MAX(club) AS club FROM players GROUP BY date(joined);
+SELECT COUNT(*) AS freq, name, club, DATE(joined) FROM players GROUP BY name, club, DATE(joined);
+select count(*) as freq, year(joined) from players group by year(joined);
+select now();
+select now(), curdate(), curtime();
